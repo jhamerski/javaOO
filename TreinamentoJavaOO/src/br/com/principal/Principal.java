@@ -24,7 +24,7 @@ public class Principal {
 		double notaDois = teclado.nextDouble();
 		aluno.setNotaDois(notaDois);
 
-		System.out.println("O aluno " + aluno.getNome() + " ficou com média " + aluno.calculaMedia());
+		System.out.print("O aluno " + aluno.getNome() + " ficou com média " + aluno.calculaMedia() + ", ficou: " + aluno.statusAprovacao());
 		
 	}
 

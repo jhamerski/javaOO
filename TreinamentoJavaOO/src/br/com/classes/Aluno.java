@@ -34,5 +34,18 @@ public class Aluno {
 	public double calculaMedia() {
 		return (notaUm + notaDois) / 2;
 	}
+	
+	//metodo para verificar se foi aprovado
+	public String statusAprovacao() {
+		double media = this.calculaMedia();
+		
+		if(media >= 70) {
+			return "Aprovado";
+		}else if (media >= 50 && media < 70) {
+			return "Recuperação";
+		}else {
+			return "Reprovado";
+		}
+	}
 
 }
