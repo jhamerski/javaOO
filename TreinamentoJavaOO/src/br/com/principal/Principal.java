@@ -5,26 +5,21 @@ import java.util.Scanner;
 import br.com.classes.Aluno;
 
 public class Principal {
-	
+
 	public static void main(String[] args) {
-		
-		Scanner teclado = new Scanner(System.in);
 
-		Aluno aluno = new Aluno();
-		
-		System.out.print("Informe o nome do aluno: ");
-		String nome = teclado.next();
-		aluno.setNome(nome);
-		
-		System.out.print("Informe primeira nota: ");
-		double notaUm = teclado.nextDouble();
-		aluno.setNotaUm(notaUm);
-		
-		System.out.print("Informe segunda nota: ");
-		double notaDois = teclado.nextDouble();
-		aluno.setNotaDois(notaDois);
+		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Jonas");
 
-		System.out.print("O aluno " + aluno.getNome() + " ficou com média " + aluno.calculaMedia() + ", ficou: " + aluno.statusAprovacao());
+		Aluno aluno2 = new Aluno();
+		aluno2.setNome("Jonas");
+
+		//Ele compara dois objetos e antes de sobrescrever o EQUALS E HASHCODE eles são objetos diferentes.
+		if (aluno1.equals(aluno2)) {
+			System.out.println("São iguais.");
+		}else{
+			System.out.println("Diferentes");
+		}
 		
 	}
 
