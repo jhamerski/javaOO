@@ -45,10 +45,18 @@ public class Principal {
 		}
 
 		for (Aluno alu : alunos) {
-			System.out.println("O aluno " + alu.getNome() + " ficou com média " + alu.calculaMedia() + ", ficou: "
-					+ alu.statusAprovacao());
+			System.out.println("O aluno " + alu.getNome() + " ficou com média " + alu.calculaMedia() + ".");
 		}
-
+		
+		System.out.print("Informe o nome do aluno para saber se foi aprovado: ");
+		String procurado = teclado.next();
+		for (Aluno aluno : alunos) {
+			if(aluno.getNome().equalsIgnoreCase(procurado)) {
+				System.out.println("Aluno: " + aluno.getNome().toUpperCase() + " está " + aluno.statusAprovacao());
+			}else {
+				System.out.print("Aluno não encontrado.");
+			}
+		}
 	}
 
 }
