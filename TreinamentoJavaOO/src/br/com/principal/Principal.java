@@ -1,5 +1,7 @@
 package br.com.principal;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.classes.Aluno;
@@ -11,29 +13,41 @@ public class Principal {
 
 		Scanner teclado = new Scanner(System.in);
 
-		Aluno aluno = new Aluno();
+		List<Aluno> alunos = new ArrayList<Aluno>();
 
-		System.out.print("Informe o nome do aluno: ");
-		String nome = teclado.next();
-		aluno.setNome(nome);
-		
-		for (int i = 1; i <= 2; i++) {
-			System.out.print("Informe o nome da " + i + "° disciplina: ");
-			String nomeDisciplina = teclado.next();
-			System.out.print("Informe a nota " + i + "° nota: ");
-			double nota = teclado.nextDouble();
-			
-			Disciplina disciplina = new Disciplina();
-			
-			disciplina.setDisciplina(nomeDisciplina);
-			disciplina.setNota(nota);
+		System.out.print("Quantos alunos deseja cadastrar: ");
+		int qtd = teclado.nextInt();
 
-			
-			aluno.getDisciplinas().add(disciplina);
+		for (int i = 1; i <= qtd; i++) {
+
+			Aluno aluno = new Aluno();
+
+			System.out.print("Informe o nome do " + i + "° aluno: ");
+			String nome = teclado.next();
+			aluno.setNome(nome);
+
+			for (int j = 1; j <= 2; j++) {
+				Disciplina disciplina = new Disciplina();
+
+				System.out.print("Informe o nome da " + i + "° disciplina: ");
+				String nomeDisciplina = teclado.next();
+				System.out.print("Informe a nota " + i + "° nota: ");
+				double nota = teclado.nextDouble();
+
+				disciplina.setDisciplina(nomeDisciplina);
+				disciplina.setNota(nota);
+
+				aluno.getDisciplinas().add(disciplina);
+			}
+
+			alunos.add(aluno);
+
 		}
 
-		System.out.print("O aluno " + aluno.getNome() + " ficou com média " + aluno.calculaMedia() + ", ficou: "
-				+ aluno.statusAprovacao());
+		for (Aluno alu : alunos) {
+			System.out.println("O aluno " + alu.getNome() + " ficou com média " + alu.calculaMedia() + ", ficou: "
+					+ alu.statusAprovacao());
+		}
 
 	}
 
