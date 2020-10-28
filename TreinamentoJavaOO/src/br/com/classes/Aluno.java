@@ -3,6 +3,8 @@ package br.com.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.constantes.StatusAluno;
+
 public class Aluno {
 
 	private String nome;
@@ -42,11 +44,11 @@ public class Aluno {
 		double media = this.calculaMedia();
 		
 		if(media >= 70) {
-			return "Aprovado";
+			return StatusAluno.APROVADO;
 		}else if (media >= 50 && media < 70) {
-			return "Recuperação";
+			return StatusAluno.RECUPERACAO;
 		}else {
-			return "Reprovado";
+			return StatusAluno.REPROVADO;
 		}
 	}
 	

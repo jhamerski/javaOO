@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import br.com.classes.Aluno;
 import br.com.classes.Disciplina;
+import br.com.constantes.StatusAluno;
 
 public class Principal {
 
@@ -14,6 +15,9 @@ public class Principal {
 		Scanner teclado = new Scanner(System.in);
 
 		List<Aluno> alunos = new ArrayList<Aluno>();
+		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
+		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
+		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
 
 		System.out.print("Quantos alunos deseja cadastrar: ");
 		int qtd = teclado.nextInt();
@@ -55,6 +59,17 @@ public class Principal {
 				System.out.println("Aluno: " + aluno.getNome().toUpperCase() + " está " + aluno.statusAprovacao());
 			}else {
 				System.out.print("Aluno não encontrado.");
+			}
+		}
+		
+		
+		for (Aluno aluno : alunos) {
+			if(aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.APROVADO)) {
+				alunosAprovados.add(aluno);
+			}else if(aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+				alunosRecuperacao.add(aluno);
+			}else {
+				alunosReprovados.add(aluno);
 			}
 		}
 	}
