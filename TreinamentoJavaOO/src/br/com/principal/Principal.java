@@ -3,24 +3,38 @@ package br.com.principal;
 import java.util.Scanner;
 
 import br.com.classes.Aluno;
+import br.com.classes.Disciplina;
 
 public class Principal {
 
 	public static void main(String[] args) {
 
-		Aluno aluno1 = new Aluno();
-		aluno1.setNome("Jonas");
+		Scanner teclado = new Scanner(System.in);
 
-		Aluno aluno2 = new Aluno();
-		aluno2.setNome("Jonas");
+		Aluno aluno = new Aluno();
 
-		//Ele compara dois objetos e antes de sobrescrever o EQUALS E HASHCODE eles são objetos diferentes.
-		if (aluno1.equals(aluno2)) {
-			System.out.println("São iguais.");
-		}else{
-			System.out.println("Diferentes");
-		}
+		System.out.print("Informe o nome do aluno: ");
+		String nome = teclado.next();
+		aluno.setNome(nome);
 		
+		for (int i = 1; i <= 2; i++) {
+			System.out.print("Informe o nome da " + i + "° disciplina: ");
+			String nomeDisciplina = teclado.next();
+			System.out.print("Informe a nota " + i + "° nota: ");
+			double nota = teclado.nextDouble();
+			
+			Disciplina disciplina = new Disciplina();
+			
+			disciplina.setDisciplina(nomeDisciplina);
+			disciplina.setNota(nota);
+
+			
+			aluno.getDisciplinas().add(disciplina);
+		}
+
+		System.out.print("O aluno " + aluno.getNome() + " ficou com média " + aluno.calculaMedia() + ", ficou: "
+				+ aluno.statusAprovacao());
+
 	}
 
 }
