@@ -35,9 +35,9 @@ public class Principal {
 			for (int j = 1; j <= 2; j++) {
 				Disciplina disciplina = new Disciplina();
 
-				System.out.print("Informe o nome da " + i + "° disciplina: ");
+				System.out.print("Informe o nome da " + j + "° disciplina: ");
 				String nomeDisciplina = teclado.next();
-				System.out.print("Informe a nota " + i + "° nota: ");
+				System.out.print("Informe a nota " + j + "° nota: ");
 				double nota = teclado.nextDouble();
 
 				disciplina.setDisciplina(nomeDisciplina);
