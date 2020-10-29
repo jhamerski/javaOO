@@ -13,80 +13,89 @@ import br.com.constantes.StatusAluno;
 public class Principal {
 
 	public static void main(String[] args) {
-
 		Scanner teclado = new Scanner(System.in);
 
-		List<Aluno> alunos = new ArrayList<Aluno>();
+		System.out.print("Informe o login: ");
+		String login = teclado.next();
+		System.out.print("Informe e senha: ");
+		String senha = teclado.next();
 
-		//lista que dentro dela temos uma chave que identifica uma sequencia de valores
-		HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
-		
-		System.out.print("Quantos alunos deseja cadastrar: ");
-		int qtd = teclado.nextInt();
+		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
 
-		for (int i = 1; i <= qtd; i++) {
+			List<Aluno> alunos = new ArrayList<Aluno>();
 
-			Aluno aluno = new Aluno();
+			// lista que dentro dela temos uma chave que identifica uma sequencia de valores
+			HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
-			System.out.print("Informe o nome do " + i + "° aluno: ");
-			String nome = teclado.next();
-			aluno.setNome(nome);
+			System.out.print("Quantos alunos deseja cadastrar: ");
+			int qtd = teclado.nextInt();
 
-			for (int j = 1; j <= 2; j++) {
-				Disciplina disciplina = new Disciplina();
+			for (int i = 1; i <= qtd; i++) {
 
-				System.out.print("Informe o nome da " + j + "° disciplina: ");
-				String nomeDisciplina = teclado.next();
-				System.out.print("Informe a nota " + j + "° nota: ");
-				double nota = teclado.nextDouble();
+				Aluno aluno = new Aluno();
 
-				disciplina.setDisciplina(nomeDisciplina);
-				disciplina.setNota(nota);
+				System.out.print("Informe o nome do " + i + "° aluno: ");
+				String nome = teclado.next();
+				aluno.setNome(nome);
 
-				aluno.getDisciplinas().add(disciplina);
+				for (int j = 1; j <= 2; j++) {
+					Disciplina disciplina = new Disciplina();
+
+					System.out.print("Informe o nome da " + j + "° disciplina: ");
+					String nomeDisciplina = teclado.next();
+					System.out.print("Informe a nota " + j + "° nota: ");
+					double nota = teclado.nextDouble();
+
+					disciplina.setDisciplina(nomeDisciplina);
+					disciplina.setNota(nota);
+
+					aluno.getDisciplinas().add(disciplina);
+				}
+
+				alunos.add(aluno);
+
 			}
 
-			alunos.add(aluno);
-
-		}
-
-		for (Aluno alu : alunos) {
-			System.out.println("O aluno " + alu.getNome() + " ficou com média " + alu.calculaMedia() + ".");
-		}
-		
-		System.out.print("Informe o nome do aluno para saber se foi aprovado: ");
-		String procurado = teclado.next();
-		for (Aluno aluno : alunos) {
-			if(aluno.getNome().equalsIgnoreCase(procurado)) {
-				System.out.println("Aluno: " + aluno.getNome().toUpperCase() + " está " + aluno.statusAprovacao());
+			for (Aluno alu : alunos) {
+				System.out.println("O aluno " + alu.getNome() + " ficou com média " + alu.calculaMedia() + ".");
 			}
-		}
-		
-		maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
-		maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
-		maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
-		
-		for (Aluno aluno : alunos) {
-			if(aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.APROVADO)) {
-				maps.get(StatusAluno.APROVADO).add(aluno);
-			}else if(aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
-				maps.get(StatusAluno.RECUPERACAO).add(aluno);
-			}else if (aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.REPROVADO)){
-				maps.get(StatusAluno.REPROVADO).add(aluno);
+
+			System.out.print("Informe o nome do aluno para saber se foi aprovado: ");
+			String procurado = teclado.next();
+			for (Aluno aluno : alunos) {
+				if (aluno.getNome().equalsIgnoreCase(procurado)) {
+					System.out.println("Aluno: " + aluno.getNome().toUpperCase() + " está " + aluno.statusAprovacao());
+				}
 			}
-		}
-		
-		System.out.println("\n--------LISTA DOS APROVADOS--------");
-		for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
-			System.out.println("Aluno " + aluno.getNome() + " ficou com média: " + aluno.calculaMedia());
-		}
-		System.out.println("-------LISTA DOS RECUPERAÇÃO-------");
-		for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
-			System.out.println("Aluno " + aluno.getNome() + " ficou com média: " + aluno.calculaMedia());
-		}
-		System.out.println("--------LISTA DOS REPROVADOS-------");
-		for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
-			System.out.println("Aluno " + aluno.getNome() + " ficou com média: " + aluno.calculaMedia());
+
+			maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+			maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+			maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+
+			for (Aluno aluno : alunos) {
+				if (aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.APROVADO)) {
+					maps.get(StatusAluno.APROVADO).add(aluno);
+				} else if (aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+					maps.get(StatusAluno.RECUPERACAO).add(aluno);
+				} else if (aluno.statusAprovacao().equalsIgnoreCase(StatusAluno.REPROVADO)) {
+					maps.get(StatusAluno.REPROVADO).add(aluno);
+				}
+			}
+
+			System.out.println("\n--------LISTA DOS APROVADOS--------");
+			for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
+				System.out.println("Aluno " + aluno.getNome() + " ficou com média: " + aluno.calculaMedia());
+			}
+			System.out.println("-------LISTA DOS RECUPERAÇÃO-------");
+			for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
+				System.out.println("Aluno " + aluno.getNome() + " ficou com média: " + aluno.calculaMedia());
+			}
+			System.out.println("--------LISTA DOS REPROVADOS-------");
+			for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
+				System.out.println("Aluno " + aluno.getNome() + " ficou com média: " + aluno.calculaMedia());
+			}
+		} else {
+			System.out.println("Login ou senha invádos.");
 		}
 	}
 
