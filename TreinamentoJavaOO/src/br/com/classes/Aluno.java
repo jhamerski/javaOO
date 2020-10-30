@@ -94,4 +94,10 @@ public class Aluno extends Pessoa {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Aluno [dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado="
+				+ serieMatriculado + ", disciplinas=" + disciplinas + ", nome=" + nome + "]";
+	}
+
 }
