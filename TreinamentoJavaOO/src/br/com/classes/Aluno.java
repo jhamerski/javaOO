@@ -5,56 +5,69 @@ import java.util.List;
 
 import br.com.constantes.StatusAluno;
 
-public class Aluno {
+public class Aluno extends Pessoa {
 
-	private String nome;
-
+	private String dataMatricula;
+	private String nomeEscola;
+	private String serieMatriculado;
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	
+
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
-	
+
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-	
+
+	public Aluno() {
+
+	}
+
+	public Aluno(String nomePadrao) {
+		nome = nomePadrao;
+	}
+
+	public Aluno(String nomePadrao, int idadePadrao) {
+		nome = nomePadrao;
+		idade = idadePadrao;
+	}
+
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		super.nome = nome;
 	}
 
-	//metodo para calcular a media de notas dos alunos
+	// metodo para calcular a media de notas dos alunos
 	public double calculaMedia() {
-		
+
 		double somaNotas = 0.0;
-		
+
 		for (Disciplina disciplina : disciplinas) {
-			somaNotas += disciplina.getNota();;
+			somaNotas += disciplina.getNota();
+			;
 		}
-		
+
 		return somaNotas / disciplinas.size();
 	}
-	
-	//metodo para verificar se foi aprovado
+
+	// metodo para verificar se foi aprovado
 	public String statusAprovacao() {
 		double media = this.calculaMedia();
-		
-		if(media >= 70) {
+
+		if (media >= 70) {
 			return StatusAluno.APROVADO;
-		}else if (media >= 50 && media < 70) {
+		} else if (media >= 50 && media < 70) {
 			return StatusAluno.RECUPERACAO;
-		}else {
+		} else {
 			return StatusAluno.REPROVADO;
 		}
 	}
-	
-	
 
-	//Aqui acontece a comparação dos valores dos objetos
+	// Aqui acontece a comparação dos valores dos objetos
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,7 +76,7 @@ public class Aluno {
 		return result;
 	}
 
-	//Aqui acontece a comparação dos valores dos objetos
+	// Aqui acontece a comparação dos valores dos objetos
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -80,5 +93,5 @@ public class Aluno {
 			return false;
 		return true;
 	}
-	
+
 }
