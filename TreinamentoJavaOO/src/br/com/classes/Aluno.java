@@ -96,7 +96,6 @@ public class Aluno extends Pessoa {
 	
 	@Override
 	public boolean pessoaMaiorIdade() {
-		// TODO Auto-generated method stub
 		return idade >= 21;
 	}
 	
@@ -112,7 +111,6 @@ public class Aluno extends Pessoa {
 
 	@Override
 	public double salario() {
-		// TODO Auto-generated method stub
 		return 1500.90;
 	}
 

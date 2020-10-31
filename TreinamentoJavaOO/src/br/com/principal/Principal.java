@@ -10,6 +10,7 @@ import br.com.classes.Aluno;
 import br.com.classes.Disciplina;
 import br.com.classes.Secretario;
 import br.com.constantes.StatusAluno;
+import br.com.interfaces.PermitirAcesso;
 
 public class Principal {
 
@@ -21,11 +22,7 @@ public class Principal {
 		System.out.print("Informe e senha: ");
 		String senha = teclado.next();
 
-		Secretario secretario = new Secretario();
-		secretario.setLogin(login);
-		secretario.setSenha(senha);
-
-		if (secretario.autenticar()) {
+		if (new Secretario().autenticar(login, senha)) {
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
 
