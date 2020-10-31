@@ -21,8 +21,12 @@ public class Principal {
 		String login = teclado.next();
 		System.out.print("Informe e senha: ");
 		String senha = teclado.next();
+		
+		PermitirAcesso permitirAcesso = new Secretario(login, senha);
+		
+		
 
-		if (new Secretario().autenticar(login, senha)) {
+		if (permitirAcesso.autenticar()) {
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
 
