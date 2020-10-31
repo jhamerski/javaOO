@@ -93,6 +93,16 @@ public class Aluno extends Pessoa {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public boolean pessoaMaiorIdade() {
+		// TODO Auto-generated method stub
+		return idade >= 21;
+	}
+	
+	public String msgMaiorIdade() {
+		return this.pessoaMaiorIdade() ? "Oba, aluno de maior" : "Ixi, de menor...";
+	}
 
 	@Override
 	public String toString() {

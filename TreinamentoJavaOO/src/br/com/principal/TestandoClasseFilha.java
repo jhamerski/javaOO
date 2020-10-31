@@ -10,18 +10,23 @@ public class TestandoClasseFilha {
 
 		Aluno aluno = new Aluno();
 		aluno.setNome("Jonas Hamerski");
+		aluno.setIdade(16);
 
 		Diretor diretor = new Diretor();
 		diretor.setRegitroEducacao("7263716278316");
-
+		diretor.setIdade(50);
+		
 		Secretario secretario = new Secretario();
 		secretario.setExperiencia("Ciência da Computação");
-
+		secretario.setIdade(18);
+		
 		System.out.println(aluno);
 		System.out.println(diretor);
 		System.out.println(secretario);
-		
-		System.out.println("Teste");
+
+		System.out.println(aluno.pessoaMaiorIdade() + " - " + aluno.msgMaiorIdade());
+		diretor.pessoaMaiorIdade();
+		secretario.pessoaMaiorIdade();
 
 	}
 }
