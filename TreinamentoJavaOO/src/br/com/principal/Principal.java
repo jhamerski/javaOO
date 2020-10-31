@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import br.com.classes.Aluno;
 import br.com.classes.Disciplina;
+import br.com.classes.Secretario;
 import br.com.constantes.StatusAluno;
 
 public class Principal {
@@ -20,7 +21,11 @@ public class Principal {
 		System.out.print("Informe e senha: ");
 		String senha = teclado.next();
 
-		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+		Secretario secretario = new Secretario();
+		secretario.setLogin(login);
+		secretario.setSenha(senha);
+
+		if (secretario.autenticar()) {
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
 
