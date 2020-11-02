@@ -112,8 +112,6 @@ public class Principal {
 
 		} catch (Exception e) {
 
-			StringBuilder saida = new StringBuilder();
-
 			/* Imprime erro no consolel java */
 			e.printStackTrace();
 
