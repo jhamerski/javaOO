@@ -1,5 +1,7 @@
 package br.com.principal;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +14,16 @@ import br.com.classes.Disciplina;
 import br.com.classes.Secretario;
 import br.com.classesauxiliares.FuncaoAutenticacao;
 import br.com.constantes.StatusAluno;
+import br.com.excecao.ExcecaoProcessarNota;
 import br.com.interfaces.PermitirAcesso;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExcecaoProcessarNota {
 
 		try {
+			lerArquivo();
+			
 			Scanner teclado = new Scanner(System.in);
 
 			System.out.print("Informe o login: ");
@@ -124,11 +129,21 @@ public class Principal {
 				System.out.println("Classe de erro: " + e.getStackTrace()[i].getClassName());
 				System.out.println("Método de erro: " + e.getStackTrace()[i].getMethodName());
 				System.out.println("Linha de erro: " + e.getStackTrace()[i].getLineNumber());
-				
+
 			}
-		}finally {
+		} finally {
 			System.out.println("Obrigado por aprender java comigo.");
 		}
+	}
+	
+	public static void lerArquivo() throws ExcecaoProcessarNota {
+		try {
+			File file = new File("c://lines.txt");
+			Scanner scanner = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			throw new ExcecaoProcessarNota(e.getMessage());
+		}
+		
 	}
 
 }
