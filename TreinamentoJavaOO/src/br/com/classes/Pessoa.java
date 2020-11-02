@@ -9,7 +9,7 @@ public abstract class Pessoa {
 	protected String numeroCpf;
 	protected String nomeMae;
 	protected String nomePai;
-	
+
 	public abstract double salario();
 
 	public String getNome() {
@@ -67,7 +67,7 @@ public abstract class Pessoa {
 	public void setNomePai(String nomePai) {
 		this.nomePai = nomePai;
 	}
-	
+
 	public boolean pessoaMaiorIdade() {
 		return idade >= 18;
 	}

@@ -7,8 +7,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 import br.com.classes.Aluno;
+import br.com.classes.Diretor;
 import br.com.classes.Disciplina;
 import br.com.classes.Secretario;
+import br.com.classesauxiliares.FuncaoAutenticacao;
 import br.com.constantes.StatusAluno;
 import br.com.interfaces.PermitirAcesso;
 
@@ -21,12 +23,13 @@ public class Principal {
 		String login = teclado.next();
 		System.out.print("Informe e senha: ");
 		String senha = teclado.next();
-		
-		PermitirAcesso permitirAcesso = new Secretario(login, senha);
-		
-		
 
-		if (permitirAcesso.autenticar()) {
+		// FuncaoAutenticacao autenticacao = new FuncaoAutenticacao();
+
+		// PermitirAcesso permitirAcesso = new Secretario(login, senha);
+
+		if (new FuncaoAutenticacao(new Diretor(login, senha))
+				.autenticar()) {/* Vou travar o contrato para autorizar o login tendo contrato 100% legítimo */
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
 
