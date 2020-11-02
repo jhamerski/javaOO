@@ -17,6 +17,8 @@ import br.com.interfaces.PermitirAcesso;
 public class Principal {
 
 	public static void main(String[] args) {
+		
+		try {
 		Scanner teclado = new Scanner(System.in);
 
 		System.out.print("Informe o login: ");
@@ -41,7 +43,7 @@ public class Principal {
 
 			for (int i = 1; i <= qtd; i++) {
 
-				Aluno aluno = new Aluno();
+				Aluno aluno = null;
 
 				System.out.print("Informe o nome do " + i + "° aluno: ");
 				String nome = teclado.next();
@@ -105,6 +107,11 @@ public class Principal {
 			}
 		} else {
 			System.out.println("Login ou senha invádos.");
+		}
+		
+	} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Erro ao processar notas.");
 		}
 	}
 
