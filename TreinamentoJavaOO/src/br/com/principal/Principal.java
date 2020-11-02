@@ -125,8 +125,9 @@ public class Principal {
 				System.out.println("Método de erro: " + e.getStackTrace()[i].getMethodName());
 				System.out.println("Linha de erro: " + e.getStackTrace()[i].getLineNumber());
 				
-				
 			}
+		}finally {
+			System.out.println("Obrigado por aprender java comigo.");
 		}
 	}
 
