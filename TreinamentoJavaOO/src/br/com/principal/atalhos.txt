@@ -1,0 +1,5 @@
+F6 -> Segue linha a linha.
+F5 -> Entra nos métodos.
+F7 -> Saí de dentro dos métodos.
+F8 -> Segue para o próximo ponto de parada.
+CTRL + SHIFT + i -> Valor da expressão ou variável.

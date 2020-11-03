@@ -22,7 +22,7 @@ public class Principal {
 	public static void main(String[] args) throws ExcecaoProcessarNota {
 
 		try {
-			lerArquivo();
+			//lerArquivo();
 			
 			Scanner teclado = new Scanner(System.in);
 
@@ -48,7 +48,7 @@ public class Principal {
 
 				for (int i = 1; i <= qtd; i++) {
 
-					Aluno aluno = null;
+					Aluno aluno = new Aluno();
 
 					System.out.print("Informe o nome do " + i + "° aluno: ");
 					String nome = teclado.next();
