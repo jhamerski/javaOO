@@ -2,26 +2,29 @@ package br.com.principal;
 
 import java.util.Scanner;
 
+import br.com.classes.Aluno;
+import br.com.classes.Disciplina;
+
 public class ArrayVetor {
 
 	public static void main(String[] args) {
 		
 		Scanner teclado = new Scanner(System.in);
-		System.out.print("Quanto posições tem o Array? ");
-		int posicoes = teclado.nextInt();
+
+
+		/*Criação do aluno*/
+		Aluno aluno = new Aluno();
+		aluno.setNome("Jonas Hamerski");
 		
-		double notas[] = new double[posicoes];
-		//double[] notas1 = new double[5];
+		/*Criação da disciplina*/
+		Disciplina disciplina = new Disciplina();
+		disciplina.setDisciplina("Matemática");
 		
-		System.out.println();
-		for (int i = 0; i < notas.length; i++) {
-			System.out.print("Informe o " + (i + 1) + "° valor: ");
-			notas[i] = teclado.nextDouble();
-		}
+		/*Criação das notas*/
+		double[] notas = {100.0, 90.0, 80.0, 75.0};
+		disciplina.setNota(notas);
 		
-		System.out.println("Resultado: ");
-		for (int i = 0; i < notas.length; i++) {
-			System.out.print(notas[i] + " - ");
-		}
+		aluno.getDisciplinas().add(disciplina);
+		
 	}
 }

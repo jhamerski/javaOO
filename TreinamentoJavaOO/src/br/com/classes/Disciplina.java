@@ -1,15 +1,17 @@
 package br.com.classes;
 
+import java.util.Arrays;
+
 public class Disciplina {
 
-	private double nota;
+	private double[] nota = new double[4];
 	private String nomeDisciplina;
 
-	public double getNota() {
+	public double[] getNota() {
 		return nota;
 	}
 
-	public void setNota(double nota) {
+	public void setNota(double[] nota) {
 		this.nota = nota;
 	}
 
@@ -19,6 +21,14 @@ public class Disciplina {
 
 	public void setDisciplina(String nomeDisciplina) {
 		this.nomeDisciplina = nomeDisciplina;
+	}
+	
+	public double getMediaNotas() {
+		double soma = 0;
+		for (int i = 0; i < nota.length; i++) {
+			soma += nota[i];
+		}
+		return soma / nota.length;
 	}
 
 	@Override
@@ -31,9 +41,7 @@ public class Disciplina {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nomeDisciplina == null) ? 0 : nomeDisciplina.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(nota);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Arrays.hashCode(nota);
 		return result;
 	}
 
@@ -51,7 +59,7 @@ public class Disciplina {
 				return false;
 		} else if (!nomeDisciplina.equals(other.nomeDisciplina))
 			return false;
-		if (Double.doubleToLongBits(nota) != Double.doubleToLongBits(other.nota))
+		if (!Arrays.equals(nota, other.nota))
 			return false;
 		return true;
 	}
