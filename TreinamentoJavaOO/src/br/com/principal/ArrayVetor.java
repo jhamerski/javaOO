@@ -61,6 +61,19 @@ public class ArrayVetor {
 			System.out.println("O maior nota da Disciplina " + d.getDisciplina() + " foi: " + maior + " e sua menor nota foi: " + menor);
 			System.out.println();
 		}
-
+		
+		Aluno[] arrayAlunos = new Aluno[1];
+		arrayAlunos[0] = aluno;
+		
+		for (int i = 0; i < arrayAlunos.length; i++) {
+			System.out.println("Nome do aluno é: " + arrayAlunos[i].getNome());
+			for (Disciplina d : arrayAlunos[i].getDisciplinas()) {
+				System.out.println("Disciplina: " + d.getDisciplina());
+				for (int j = 0; j < d.getNota().length; j++) {
+					System.out.println((j + 1) + "° nota: " + d.getNota()[j]);
+				}
+			}
+		}
+		
 	}
 }
