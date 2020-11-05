@@ -39,6 +39,7 @@ public class ArrayVetor {
 
 		System.out.println("=== Disciplinas do aluno ===");
 		double maior = 0;
+		double menor = 0;
 		for (Disciplina d : aluno.getDisciplinas()) {
 			System.out.println("Disiciplina: " + d.getDisciplina());
 			System.out.println("As notas da Disciplina são: ");
@@ -47,14 +48,17 @@ public class ArrayVetor {
 				System.out.println("Nota " + (i + 1) + "° é igual à: " + d.getNota()[i]);
 				if (i == 0) {
 					maior = d.getNota()[i];
+					menor = d.getNota()[i];
 				} else {
 					if (d.getNota()[i] > maior) {
 						maior = d.getNota()[i];
+					}if(d.getNota()[i] < menor) {
+						menor = d.getNota()[i];
 					}
 				}
 
 			}
-			System.out.println("O maior nota da Disciplina " + d.getDisciplina() + " foi: " + maior);
+			System.out.println("O maior nota da Disciplina " + d.getDisciplina() + " foi: " + maior + " e sua menor nota foi: " + menor);
 			System.out.println();
 		}
 
