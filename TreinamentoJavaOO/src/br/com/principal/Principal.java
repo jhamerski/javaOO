@@ -63,7 +63,7 @@ public class Principal {
 						double nota = teclado.nextDouble();
 
 						disciplina.setDisciplina(nomeDisciplina);
-						disciplina.setNota(nota);
+						//disciplina.setNota(nota);
 
 						aluno.getDisciplinas().add(disciplina);
 					}
