@@ -14,7 +14,13 @@ public class Matriz {
 		notas[1][1] = 75;
 		notas[1][2] = 50;
 		
-		System.out.println(notas);
+		
+		for (int i = 0; i < notas.length; i++) {
+			for (int j = 0; j < notas[i].length; j++) {
+				System.out.print(notas[i][j] + " ");
+			}
+			System.out.println();
+		}
 		
 	}
 }
