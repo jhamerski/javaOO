@@ -5,6 +5,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -25,6 +29,23 @@ public class TelaTimeThread extends JDialog {
 
 	private JButton jButton = new JButton("Start");
 	private JButton jButton2 = new JButton("Stop");
+	
+	private Runnable thread = new Runnable() {
+		
+		@Override
+		public void run() {
+			while(true) {
+				mostraTempo.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm.ss").format(Calendar.getInstance().getTime()));
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	};
+	
+	private Thread threadTime;
 
 	public TelaTimeThread() {
 		setTitle("Minha tela de time com THREAD");
@@ -57,6 +78,23 @@ public class TelaTimeThread extends JDialog {
 		gridBagConstraints.gridy++;
 		mostraTempo2.setEditable(false);
 		jPanel.add(mostraTempo2, gridBagConstraints);
+		
+		jButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				threadTime = new Thread(thread);
+				threadTime.start();
+			}
+		});
+		
+		jButton2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				threadTime.stop();
+			}
+		});
 		
 		/*Nesse momento o jButtons são iniciados na primeira posição*/
 		gridBagConstraints.gridwidth = 1;
