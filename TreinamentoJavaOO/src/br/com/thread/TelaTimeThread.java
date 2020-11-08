@@ -68,11 +68,20 @@ public class TelaTimeThread extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ObjetoFilaThread filaThread = new ObjetoFilaThread();
-				filaThread.setNome(mostraTempo.getText());
-				filaThread.setEmail(mostraTempo2.getText());
+				
+				if(fila == null) {
+					fila = new ImplementacaoFilaThread();
+					fila.start();
+				}
 
-				fila.add(filaThread);
+				for (int i = 0; i < 3; i++) {/*Simulando 100 processos...*/
+					ObjetoFilaThread filaThread = new ObjetoFilaThread();
+					filaThread.setNome(mostraTempo.getText());
+					filaThread.setEmail(mostraTempo2.getText() + " - "+ i);
+
+					fila.add(filaThread);
+				}
+
 			}
 		});
 
@@ -81,6 +90,7 @@ public class TelaTimeThread extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				fila = null;
 			}
 		});
 
