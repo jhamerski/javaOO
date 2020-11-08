@@ -29,13 +29,32 @@ public class TelaTimeThread extends JDialog {
 
 	private JButton jButton = new JButton("Start");
 	private JButton jButton2 = new JButton("Stop");
-	
+
 	private Runnable thread = new Runnable() {
-		
+
 		@Override
 		public void run() {
-			while(true) {
-				mostraTempo.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm.ss").format(Calendar.getInstance().getTime()));
+			while (true) {
+				mostraTempo
+						.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm.ss").format(Calendar.getInstance().getTime()));
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	};
+
+	private Thread threadTime;
+
+	private Runnable thread2 = new Runnable() {
+
+		@Override
+		public void run() {
+			while (true) {
+				mostraTempo2
+						.setText(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime()));
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -45,7 +64,7 @@ public class TelaTimeThread extends JDialog {
 		}
 	};
 	
-	private Thread threadTime;
+	private Thread threadTime2;
 
 	public TelaTimeThread() {
 		setTitle("Minha tela de time com THREAD");
@@ -78,34 +97,46 @@ public class TelaTimeThread extends JDialog {
 		gridBagConstraints.gridy++;
 		mostraTempo2.setEditable(false);
 		jPanel.add(mostraTempo2, gridBagConstraints);
-		
+
 		jButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				threadTime = new Thread(thread);
 				threadTime.start();
+				
+				threadTime2 = new Thread(thread2);
+				threadTime2.start();
+				
+				jButton.setEnabled(false);
+				jButton2.setEnabled(true);
 			}
 		});
-		
+
 		jButton2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				threadTime.stop();
+				threadTime2.stop();
+				
+				jButton.setEnabled(true);
+				jButton2.setEnabled(false);
 			}
 		});
-		
-		/*Nesse momento o jButtons são iniciados na primeira posição*/
+
+		/* Nesse momento o jButtons são iniciados na primeira posição */
 		gridBagConstraints.gridwidth = 1;
-		
+
 		jButton.setPreferredSize(new Dimension(92, 25));
 		gridBagConstraints.gridy++;
 		jPanel.add(jButton, gridBagConstraints);
-		
+
 		jButton2.setPreferredSize(new Dimension(92, 25));
 		gridBagConstraints.gridx++;
 		jPanel.add(jButton2, gridBagConstraints);
+		
+		jButton2.setEnabled(false);
 
 		add(jPanel, BorderLayout.WEST);
 		setVisible(true);
