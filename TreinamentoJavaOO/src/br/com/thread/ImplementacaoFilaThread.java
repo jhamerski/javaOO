@@ -13,38 +13,45 @@ public class ImplementacaoFilaThread extends Thread {
 
 	@Override
 	public void run() {
-		Iterator iteracao = pilhaFila.iterator();
 
-		synchronized (iteracao) {/* Bloquear o acesso a esta lista por outros processos */
+		System.out.println("Fila rodando...");
 
-			while (iteracao.hasNext()) {/* Enquanto tiver dados na lista, irá processar */
-				ObjetoFilaThread processar = (ObjetoFilaThread) iteracao.next();
+		while (true) {
+			Iterator iteracao = pilhaFila.iterator();
 
-				/* AQUI ACONTECE NOSSO PROCESSO */
-				//System.out.println(processar.getNome());
-				//System.out.println(processar.getEmail());
+			synchronized (iteracao) {/* Bloquear o acesso a esta lista por outros processos */
 
-				iteracao.remove();
+				while (iteracao.hasNext()) {/* Enquanto tiver dados na lista, irá processar */
+					ObjetoFilaThread processar = (ObjetoFilaThread) iteracao.next();
 
-				/* Dar um tempo para descarga de memória */
-				try {
-					Thread.sleep(100);/* Tempo para descarga de memória */
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					/* AQUI ACONTECE NOSSO PROCESSO DE ALGUMA ROTINA PESADA */
+					System.out.println("===============================================");
+					System.out.println(processar.getNome());
+					System.out.println(processar.getEmail());
+
+					iteracao.remove();
+
+					/* Dar um tempo para descarga de memória */
+					try {
+						Thread.sleep(2000);/* Tempo para descarga de memória */
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
-		}
 
-		/*
-		 * Tempo para descarga de memória depois de processar toda lista - LIMPEZA DE
-		 * MEMORIA
-		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			/*
+			 * Tempo para descarga de memória depois de processar toda lista - LIMPEZA DE
+			 * MEMORIA
+			 */
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
+
 }
